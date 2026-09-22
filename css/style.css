@@ -1,0 +1,329 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.showcase {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.showcase-cargando {
+  width: 100%;
+  height: 100vh;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 100px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  color: #ffffff;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.container {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 15px 25px;
+  margin: 0 5px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s;
+}
+
+nav ul li.activo,
+nav ul li:hover {
+  color: #069be0;
+}
+
+.showcase video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.9;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #156275;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.text {
+  position: relative;
+  z-index: 10;
+}
+
+.text h2 {
+  font-size: 3em;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+.text h3 {
+  font-size: 5em;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+.text p {
+  font-size: 1.1em;
+  color: #fff;
+  margin: 20px 0;
+  font-weight: 400;
+  max-width: 700px;
+}
+
+.text a {
+  display: inline-block;
+  font-size: 1em;
+  background: #fff;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+  color: #111;
+  letter-spacing: 2px;
+  transition: 0.2s;
+}
+
+.text a:hover {
+  letter-spacing: 6px;
+}
+
+.social {
+  position: absolute;
+  z-index: 10;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social li {
+  list-style: none;
+}
+
+.social li a {
+  display: inline-block;
+  margin-right: 20px;
+  filter: invert(1);
+  transform: scale(0.5);
+  transition: 0.5s;
+}
+
+.social li a:hover {
+  transform: scale(0.5) translateY(-15px);
+}
+
+@media (max-width: 991px) {
+  .showcase,
+  header {
+    padding: 40px;
+  }
+
+  .text h2 {
+    font-size: 2.5em;
+  }
+
+  .text h3 {
+    font-size: 2em;
+  }
+}
+
+/* Hace que el scroll sea suave al hacer clic en los enlaces de anclaje */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilo general para las secciones que van hacia abajo */
+.seccion-vertical {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  background: #1a1a1a;
+  color: #fff;
+  border-top: 1px solid #333;
+}
+
+.seccion-contenido {
+  text-align: center;
+  max-width: 800px;
+}
+
+.seccion-contenido h2 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #069be0;
+}
+
+.seccion-contenido p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Contenedor principal del reloj flotante */
+.reloj-flotante {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 9999; /* Asegura que siempre esté por encima de videos, textos y mapas */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* El icono circular del reloj */
+.icono-reloj {
+  width: 55px;
+  height: 55px;
+  background: #069be0;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, background 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.icono-reloj:hover {
+  transform: scale(1.1);
+  background: #0482bd;
+}
+
+/* El panel desplegable cuando tocas el reloj */
+.panel-agujas-reloj {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 260px;
+  background: rgba(17, 17, 17, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  color: #fff;
+  animation: desplegarPanel 0.25s ease forwards;
+}
+
+.panel-agujas-reloj p {
+  font-size: 13px;
+  margin-bottom: 12px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Botones de épocas dentro del menú desplegado del reloj */
+.panel-agujas-reloj button {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 8px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.panel-agujas-reloj button:hover {
+  background: #069be0;
+  border-color: #069be0;
+  transform: translateX(3px);
+}
+
+/* Animación sutil de aparición */
+@keyframes desplegarPanel {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

@@ -1,0 +1,131 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI';
+    }
+
+
+
+/* Pantalla de incio aqui inicia----------------------------------------------------------------------*/
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+/* Contenedor principal */
+.cronovisor-app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* Franja Horizontal individual de pantalla completa */
+.franja-horizontal {
+  width: 100%;
+  height: 100vh; /* Ocupa exactamente el alto visible de la ventana */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 3px solid rgba(56, 189, 248, 0.4); /* Línea divisoria horizontal */
+}
+
+/* Oscurecimiento sobre la foto de fondo para que resalte el texto */
+.franja-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.5) 0%,
+    rgba(15, 23, 42, 0.85) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Contenido dentro de la franja */
+.franja-contenido {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.franja-numero {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #38bdf8;
+  letter-spacing: 2px;
+}
+
+.franja-titulo {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.franja-subtitulo {
+  font-size: 1.25rem;
+  color: #e2e8f0;
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Pantalla de incio aqui termina ---------------------------------------------------------------------*/
+
+
+
+
+/* Mapa svg     ---------------------------------------------------------------------*/
+
+/* Si la caja es la sección completa */
+.seccion-mapa {
+  
+  background-color: #00274d; /* <--- Cambia este código HEX por el color que quieras */
+ 
+}
+
+#mapa-venezuela path {
+
+  fill: #0c4800;            /* Color base de los estados (Azul oscuro) */
+  stroke: #002e0f;          /* Color de las líneas de frontera (Azul claro) */
+  stroke-width: 1;          /* Grosor de las fronteras */
+  transition: all 0.3s ease;/* Transición suave para los cambios de color */
+  cursor: pointer;          /* Cambia el cursor a manito al pasar sobre un estado */
+}
+
+
+/* Estilo especial opcional para la Guayana Esequiba (Zona en Reclamación) */
+#VE-ES {
+  fill: rgba(177, 181, 188, 0.7);
+  stroke-dasharray: 4, 3;    /* Hace la línea de frontera punteada */
+}
+
+/* Mapa svg     ---------------------------------------------------------------------*/
+
+
+.seccion-curiosidad-contenedor {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0f172a;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  border-top: 1px solid #334155;
+}
