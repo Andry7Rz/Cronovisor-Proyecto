@@ -106,9 +106,20 @@ function RelojFlotante({ epocas, alCambiarEpoca }) {
 
 
 
-
-
-
+//modulo 1.5 leyenda
+function Leyenda({epocaActual}) {
+  return (
+    <div className="seccion-contenido">
+      <p>Estás viendo información geográfica correspondiente a: <strong>{epocaActual.subtitulo}</strong></p>
+      <h2>Referencias de la region</h2>
+      <div className="seccion-lista">
+        <ul>
+          <li> {/*nombre de la region por epoca introducido por la epoca*/} </li>
+        </ul>
+      </div>
+    </div>
+  );
+}
 
 
 
@@ -117,7 +128,7 @@ function Mapa({ epocaActual }) {
   return (
     <div className="seccion-contenido">
       <h2>Mapa Interactivo</h2>
-      <p>Estás viendo información geográfica correspondiente a: <strong>{epocaActual.subtitulo}</strong></p>
+      {/* <p>Estás viendo información geográfica correspondiente a: <strong>{epocaActual.subtitulo}</strong></p> */}
       {/* Aquí después colocarás tu mapa interactivo */}
     </div>
   );
@@ -131,6 +142,17 @@ function Curiosidad({ epocaActual }) {
       <p>Datos clave y eventos memorables de la etapa: <strong>{epocaActual.nombre}</strong></p>
     </div>
   );
+}
+
+// modulo 4: seccion final
+
+function Finale({epocaActual}) {
+  return(
+  <div className="seccion-contenido">
+    <h2>Conclusion</h2>
+    <p>loreipsum</p>
+  </div>
+  )
 }
 
 // Función Orquestadora Principal
@@ -149,6 +171,11 @@ function RenderizadorAplicacion() {
       {/* Módulo 1: Pantalla Inicial */}
       <PantallaInicial epocaActual={epocaActual} />
 
+      {/* Modulo 1.5: leyenda */}
+      <section id="seccion-leyenda" className="seccion-vertical">
+        <Leyenda epocaActual={epocaActual} />
+      </section>
+
       {/* Módulo 2: Mapa */}
       <section id="seccion-mapa" className="seccion-vertical">
         <Mapa epocaActual={epocaActual} />
@@ -157,6 +184,11 @@ function RenderizadorAplicacion() {
       {/* Módulo 3: Curiosidades */}
       <section id="seccion-curiosidades" className="seccion-vertical">
         <Curiosidad epocaActual={epocaActual} />
+      </section>
+
+      {/* Modulo 4: finale */}
+      <section id="seccion-finale" className="seccion-vertical">
+        <Finale epocaActual={epocaActual} />
       </section>
     </div>
   );

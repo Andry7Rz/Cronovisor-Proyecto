@@ -216,6 +216,14 @@ html {
   line-height: 1.6;
 }
 
+/* francisco clases */
+
+.seccion-lista{
+  font-size: 1.2em;
+  border-radius: 2em;
+  border-color: #0482bd;
+}
+
 
 
 
