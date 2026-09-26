@@ -501,3 +501,29 @@ function RenderizadorAplicacion() {
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 root.render(<RenderizadorAplicacion />);
+
+// Funciones para realizar animaciones al momento de que un objeto entre en vista
+
+const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+const callback = (entries, observer) => {
+    console.log(observer);
+    entries.forEach((entry, index) => {        
+        if (entry.isIntersecting){
+            console.log('element europa de is visible'); // linea para prueba de funcionamiento, 
+            entry.target.classList.add("europa_transicion") //clase base donde el objeto estara suspendido mientras esta visible
+        }
+        else{
+            entry.target.classList.remove("europa_transicion")
+        }
+    })
+  }
+
+let observer = new IntersectionObserver(callback, options) //observador que juntando los parametros de options (cuadro de observacion) y la funcion callback realiza la operacion asincronica
+const target = document.querySelectorAll('#transicion_element') //serie de elementos que comparten el mismo ID para aplicarles la transicion
+target.forEach(objetive => {
+    observer.observe(objetive);    
+});
