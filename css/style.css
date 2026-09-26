@@ -235,103 +235,540 @@ html {
 
 
 
+/*porfavor ignoren el relog si lo tocan explota*/
 
 
-
-
-
-
-
-
-
-
-
-/* Contenedor principal del reloj flotante */
+/* ==========================================================================
+   RELOJ MINIMALISTA MÁS GRUESO Y ELEGANTE
+   ========================================================================== */
 .reloj-flotante {
   position: fixed;
-  top: 25px;
-  right: 25px;
-  z-index: 9999; /* Asegura que siempre esté por encima de videos, textos y mapas */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-/* El icono circular del reloj */
-.icono-reloj {
-  width: 55px;
-  height: 55px;
-  background: #069be0;
-  color: #fff;
+/* Botón flotante cerrado */
+.icono-reloj-minimalista {
+  width: 56px;
+  height: 56px;
+  background: #121318;
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, background 0.3s ease;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.icono-reloj:hover {
-  transform: scale(1.1);
-  background: #0482bd;
+.icono-reloj-minimalista:hover {
+  transform: scale(1.06);
+  background: #1a1b22;
+  border-color: #ffffff;
 }
 
-/* El panel desplegable cuando tocas el reloj */
-.panel-agujas-reloj {
+.svg-reloj-mini {
+  width: 38px;
+  height: 38px;
+}
+
+.esfera-mini {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 3;
+}
+
+.marca-mini {
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.aguja-mini {
+  stroke: #ffffff;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  transform-box: view-box;
+  transform-origin: 50px 50px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.centro-mini {
+  fill: #ffffff;
+}
+
+/* Panel Desplegable */
+.panel-reloj-minimalista {
   position: absolute;
-  top: 70px;
+  top: 66px;
   right: 0;
-  width: 260px;
-  background: rgba(17, 17, 17, 0.95);
-  backdrop-filter: blur(8px);
-  border: 1px solid #333;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-  color: #fff;
-  animation: desplegarPanel 0.25s ease forwards;
+  width: 270px;
+  background: #121318;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  animation: despliegueReloj 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.panel-agujas-reloj p {
-  font-size: 13px;
+.encabezado-reloj {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 12px;
-  color: #aaa;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-/* Botones de épocas dentro del menú desplegado del reloj */
-.panel-agujas-reloj button {
-  display: block;
-  width: 100%;
-  padding: 10px 12px;
-  margin-top: 8px;
-  background: #222;
-  color: #fff;
-  border: 1px solid #444;
-  border-radius: 6px;
-  cursor: pointer;
-  text-align: left;
+.btn-cerrar-reloj {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
   font-size: 14px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.btn-cerrar-reloj:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Esfera Grande */
+.contenedor-esfera {
+  width: 195px;
+  height: 195px;
+  margin: 0 auto;
+}
+
+.svg-reloj-grande {
+  width: 100%;
+  height: 100%;
+}
+
+.esfera-fondo {
+  fill: #090a0d;
+}
+
+.esfera-borde-grueso {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 3;
+}
+
+.marca-principal {
+  stroke: #ffffff;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.marca-secundaria {
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* Nodos 1, 2, 3 */
+.nodo-epoca {
+  cursor: pointer;
+}
+
+.circulo-nodo {
+  fill: #181a20;
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 2.5;
+  transition: all 0.2s ease;
+}
+
+.texto-nodo {
+  fill: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.nodo-epoca:hover .circulo-nodo {
+  fill: #252832;
+  stroke: #ffffff;
+}
+
+.nodo-epoca.activo .circulo-nodo {
+  fill: #ffffff;
+  stroke: #ffffff;
+}
+
+.nodo-epoca.activo .texto-nodo {
+  fill: #090a0d;
+}
+
+/* AGUJA PRINCIPAL MÁS GRUESA Y VISIBLE */
+.svg-reloj-grande .grupo-aguja {
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+  pointer-events: none;
+}
+
+.aguja-principal-gruesa {
+  stroke: #ffffff;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.aguja-contrapeso {
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 3px;
+  stroke-linecap: round;
+}
+
+.aguja-punta-gruesa,
+.centro-aguja {
+  fill: #ffffff;
+}
+
+.centro-aguja-punto {
+  fill: #090a0d;
+}
+
+/* Info de Época */
+.info-epoca-minimalista {
+  text-align: center;
+  margin: 14px 0 10px 0;
+}
+
+.etiqueta-epoca {
+  display: block;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.titulo-epoca {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 2px 0 0 0;
+}
+
+/* Botones de Lista */
+.lista-botones-epocas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.btn-epoca-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
   font-weight: 500;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
 }
 
-.panel-agujas-reloj button:hover {
-  background: #069be0;
-  border-color: #069be0;
-  transform: translateX(3px);
+.num-epoca {
+  font-weight: 800;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
 }
 
-/* Animación sutil de aparición */
-@keyframes desplegarPanel {
+.btn-epoca-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-epoca-item.activo {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.btn-epoca-item.activo .num-epoca {
+  color: #ffffff;
+}
+
+@keyframes despliegueReloj {
   from {
     opacity: 0;
-    transform: translateY(-8px) scale(0.95);
+    transform: translateY(-8px) scale(0.96);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  mapa
+
+  /* ==========================================================================
+   1. LAYOUT Y CONTENEDOR DEL MAPA (Caja y Dimensiones)
+   ========================================================================== */
+/* 1. Forzamos al contenedor a tener un tamaño grande y fijo o responsivo directo */
+/* Asegura que la sección del mapa tenga espacio libre para expandirse */
+.seccion-vertical {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* Apila los elementos verticalmente si hay títulos */
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px; /* Reduce el padding para ganar espacio */
+}
+
+/* Forzar el tamaño real del mapa en el contenedor */
+#map-canvas {
+  width: 95% !important;       /* Ocupa casi todo el ancho disponible */
+  max-width: 1400px !important; /* Hazlo tan ancho como quieras (ej. 1400px o 1600px) */
+  height: 80vh !important;     /* Forzar una altura fija basada en la pantalla */
+  margin: 0 auto;
+}
+
+#mapa-venezuela {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;         /* Evita que se deforme al crecer */
+}
+
+/* Base de cada estado/camino dentro del SVG */
+.estado-path {
+  cursor: pointer;
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 1.2px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: transform 0.25s ease, fill 0.3s ease, stroke 0.25s ease, filter 0.25s ease;
+  transform-origin: center center;
+}
+
+/* ==========================================================================
+   2. INTERACCIONES (Hover y Estado Activo)
+   ========================================================================== */
+.estado-path:hover {
+  stroke: #ffffff;
+  stroke-width: 2.5px;
+  filter: brightness(1.3) drop-shadow(0 0 8px rgba(6, 155, 224, 0.8));
+  z-index: 10;
+}
+
+/* Estado seleccionado al hacer clic */
+.estado-path.activo {
+  stroke: #00e5ff;
+  stroke-width: 3px;
+  filter: brightness(1.4) drop-shadow(0 0 12px #00e5ff);
+}
+
+
+/* ==========================================================================
+   3. ÉPOCA 1: PREHISPÁNICA (Tonos Orgánicos y Terrosos por Tribus/Macro-Regiones)
+   ========================================================================== */
+/* Macro-Región Timoto-Cuica (Andes) */
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="timotocuica"] {
+  fill: #8d5b4c;
+}
+
+/* Caquetíos y Jirajaras (Occidente) */
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="caquetio"],
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="jirajara"] {
+  fill: #d4a359;
+}
+
+/* Caribe / Mariches / Teques (Centro) */
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="caribe"] {
+  fill: #e67e22;
+}
+
+/* Otomacos y Llaneros (Llanos) */
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="otomaco"] {
+  fill: #b5838d;
+}
+
+/* Cumanagotos, Chaimas, Guaiqueríes y Waraos (Oriente y Delta) */
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="cumanagoto"],
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="chaima"],
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="guaiqueri"],
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="warao"] {
+  fill: #2a9d8f;
+}
+
+/* Pemones, Yanomamis y Guayana (Sur) */
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="pemon"],
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="yanomami"] {
+  fill: #38b000;
+}
+
+/* Wayuu / Añú (Zulia) */
+#mapa-venezuela.epoca-prehispanica .estado-path[data-region-pre="wayuu-anu"] {
+  fill: #e76f51;
+}
+
+
+/* ==========================================================================
+   4. ÉPOCA 2: COLONIAL (Provincias de la Capitanía General de Venezuela - 1777)
+   ========================================================================== */
+/* Provincia de Caracas (Venezuela) */
+#mapa-venezuela.epoca-colonial .estado-path[data-provincia-col="caracas"] {
+  fill: #3a5a40;
+}
+
+/* Provincia de Maracaibo */
+#mapa-venezuela.epoca-colonial .estado-path[data-provincia-col="maracaibo"] {
+  fill: #588157;
+}
+
+/* Provincia de Barinas */
+#mapa-venezuela.epoca-colonial .estado-path[data-provincia-col="barinas"] {
+  fill: #a3b18a;
+}
+
+/* Provincia de Cumaná (Nueva Andalucía) */
+#mapa-venezuela.epoca-colonial .estado-path[data-provincia-col="cumana"] {
+  fill: #3d5a80;
+}
+
+/* Provincia de Margarita */
+#mapa-venezuela.epoca-colonial .estado-path[data-provincia-col="margarita"] {
+  fill: #98c1d9;
+}
+
+/* Provincia de Guayana */
+#mapa-venezuela.epoca-colonial .estado-path[data-provincia-col="guayana"] {
+  fill: #bc6c25;
+}
+
+
+/* ==========================================================================
+   5. ÉPOCA 3: CONTEMPORÁNEA / ACTUAL (Estética Moderna e Individualizada)
+   ========================================================================== */
+/* Colores vibrantes y diferenciados por estado */
+#mapa-venezuela.epoca-actual .estado-path {
+  fill: #1e293b;
+  stroke: #069be0;
+  stroke-width: 1px;
+}
+
+/* Efecto degradado/variación por regiones modernas */
+#mapa-venezuela.epoca-actual .estado-path[data-provincia-col="caracas"] { fill: #0f4c81; }
+#mapa-venezuela.epoca-actual .estado-path[data-provincia-col="maracaibo"] { fill: #1b4965; }
+#mapa-venezuela.epoca-actual .estado-path[data-provincia-col="barinas"] { fill: #2b2d42; }
+#mapa-venezuela.epoca-actual .estado-path[data-provincia-col="cumana"] { fill: #134074; }
+#mapa-venezuela.epoca-actual .estado-path[data-provincia-col="guayana"] { fill: #0b2545; }
+
+/* Trato especial a la Zona en Reclamación en la Época Actual */
+#VE-ES {
+  stroke-dasharray: 4 3; /* Línea punteada para el Esequibo */
+}
+
+
+
+
+
+
+
+
+
+
+/* Estilo del Tooltip Flotante del Mapa */
+.mapa-tooltip {
+  position: fixed;
+  background: rgba(15, 23, 42, 0.9);
+  color: #00e5ff;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  pointer-events: none; /* Evita que parpadee al pasar el mouse por encima */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: aparecerTooltip 0.15s ease-out;
+}
+
+@keyframes aparecerTooltip {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
