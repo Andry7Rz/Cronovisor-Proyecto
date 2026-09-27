@@ -41,7 +41,7 @@ header {
 }
 
 header .logo {
-  color: #ffffff;
+  color: #0c0013;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -186,35 +186,211 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Estilo general para las secciones que van hacia abajo */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   1. PALETAS DE COLOR DINÁMICAS POR ÉPOCA
+   ========================================================================== */
+
+/* Época 1: Prehispánica (Tierra, Vegetación, Arcilla) */
+.cronovisor-app.epoca-1 {
+  --bg-seccion: #1a1816;
+  --bg-tarjeta: #24211e;
+  --color-titulo: #e67e22;
+  --color-texto: #e7e5e4;
+  --color-borde: #44403c;
+  --color-acento: #2a9d8f;
+}
+
+/* Época 2: Colonial (Pergamino Antiguo, Madera, Vino) */
+.cronovisor-app.epoca-2 {
+  --bg-seccion: #1a120b;
+  --bg-tarjeta: #261a10;
+  --color-titulo: #d4af37;
+  --color-texto: #fef3c7;
+  --color-borde: #451a03;
+  --color-acento: #b91c1c;
+}
+
+/* Época 3: Contemporánea / Actual (Azul Pizarra, Moderno) */
+.cronovisor-app.epoca-3 {
+  --bg-seccion: #0f172a;
+  --bg-tarjeta: #1e293b;
+  --color-titulo: #069be0;
+  --color-texto: #f8fafc;
+  --color-borde: #334155;
+  --color-acento: #ef4444;
+}
+
+/* ==========================================================================
+   2. ESTILOS DE SECCIÓN CON TRANSICIÓN SUAVE
+   ========================================================================== */
 .seccion-vertical {
   width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px;
-  background: #1a1a1a;
-  color: #fff;
-  border-top: 1px solid #333;
+  padding: 100px 20px;
+  background-color: var(--bg-seccion);
+  color: var(--color-texto);
+  border-top: 1px solid var(--color-borde);
+  position: relative;
+  overflow: hidden;
+
+  /* Transición de color fluida al mover la aguja del reloj */
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
 }
 
 .seccion-contenido {
   text-align: center;
   max-width: 800px;
+  position: relative;
+  z-index: 2; /* Mantiene el texto por encima de los adornos de fondo */
 }
 
 .seccion-contenido h2 {
   font-size: 3em;
   margin-bottom: 20px;
   text-transform: uppercase;
-  color: #069be0;
+  color: var(--color-titulo);
+  transition: color 0.6s ease;
 }
 
 .seccion-contenido p {
   font-size: 1.2em;
   line-height: 1.6;
+  color: var(--color-texto);
+  transition: color 0.6s ease;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*fondo decoracion*/
+
+
+
+/* Estado inicial (Ocultas fuera de pantalla) */
+/* Estado Inicial: Ocultas y desplazadas fuera de pantalla */
+.seccion-vertical::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+}
+
+.seccion-vertical::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+}
+
+/* Estado Activo: Entran a su posición original al hacer scroll */
+.seccion-vertical.seccion-visible::before,
+.seccion-vertical.seccion-visible::after {
+  opacity: 0.85;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   POSICIONAMIENTO Y RUTAS DE IMÁGENES POR ÉPOCA
+   ========================================================================== */
+
+/* Época 1: Prehispánica */
+.cronovisor-app.epoca-1 .seccion-vertical::before {
+  top: 20px;
+  left: 20px;
+  width: 220px;
+  height: 220px;
+  background-image: url("../5.png");
+}
+
+.cronovisor-app.epoca-1 .seccion-vertical::after {
+  bottom: 20px;
+  right: 20px;
+  width: 220px;
+  height: 220px;
+  background-image: url("../5.png");
+}
+
+/* Época 2: Colonial */
+.cronovisor-app.epoca-2 .seccion-vertical::before {
+  top: 20px;
+  left: 20px;
+  width: 200px;
+  height: 200px;
+  background-image: url("../assets/marco-colonial.png");
+}
+
+.cronovisor-app.epoca-2 .seccion-vertical::after {
+  bottom: 20px;
+  right: 20px;
+  width: 200px;
+  height: 200px;
+  background-image: url("../assets/brujula.png");
+}
+
+/* Época 3: Contemporánea */
+.cronovisor-app.epoca-3 .seccion-vertical::before {
+  top: 20px;
+  right: 20px;
+  width: 220px;
+  height: 120px;
+  background-image: url("../assets/simbolos.png");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* francisco clases */
 

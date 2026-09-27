@@ -1,33 +1,43 @@
 const { useState } = React;
 
+//funcion para cambiar de epoca
+// Francisco aca desarrollas la informacion de las caracteristicas que van en las cuartillas
+
+
 const epocasData = [
   {
     id: '1',
     nombre: 'Prehispánica',
     titulo: 'CRONOVISOR',
     subtitulo: 'ÉPOCA PREHISPÁNICA',
-    descripcion: 'tu siempre dices que te sientes bien pero mientes tan bien',
-    videoSrc: '../prehisapnica.mp4'
+    descripcion: 'Explora las raíces de nuestra historia y descubre los secretos de las civilizaciones antiguas que habitaron estas tierras.',
+    videoSrc: '../assets/pantalla inicio_/Videos_inicio/prehisapnica.mp4'
   },
   {
     id: '2',
     nombre: 'Colonial',
     titulo: 'CRONOVISOR',
     subtitulo: 'ÉPOCA COLONIAL',
-    descripcion: 'y ya tu sabes que lo mio es tuyoo porque contigo es que yo fluyo',
-    videoSrc: '../colonial.mp4'
+    descripcion: 'Sumérgete en la historia de Venezuela durante la época colonial y descubre las transformaciones que moldearon nuestro país.',
+    videoSrc: '../assets/pantalla inicio_/Videos_inicio/colonial.mp4'
   },
   {
     id: '3',
     nombre: 'ACTUAL',
     titulo: 'CRONOVISOR',
     subtitulo: 'VENEZUELA ACTUAL',
-    descripcion: 'asi que dame una razon pa seguir como un loco detras de ti',
-    videoSrc: '../actual.mp4'
+    descripcion: 'Descubre la historia contemporánea de Venezuela y cómo las decisiones del pasado han moldeado el presente.',
+    videoSrc: '../assets/pantalla inicio_/Videos_inicio/actual.mp4'
   }
 ];
 
-// Módulo 1: Pantalla Inicial (Video de fondo)
+
+
+
+
+
+// Pantalla Inicial Video de fondo
+
 function PantallaInicial({ epocaActual }) {
   if (!epocaActual) {
     return <div className="showcase-cargando"><p>Cargando datos...</p></div>;
@@ -54,39 +64,17 @@ function PantallaInicial({ epocaActual }) {
         <h2>{epocaActual.titulo}</h2>
         <h3>{epocaActual.subtitulo}</h3>
         <p>{epocaActual.descripcion}</p>
-        <a href="#seccion-mapa">Por eso tu estas 101 en el top 100 y yo estoy primero</a>
+        <a href="#seccion-mapa">Ver mapa</a>
       </div>
 
       <ul className="social">
         <li><a href="#"><img src="https://i.ibb.co/x7P24fL/facebook.png" alt="Facebook" /></a></li>
-        <li><a href="#"><img src="https://i.ibb.co/Wnxq2Nq/twitter.png" alt="Twitter" /></a></li>
-        <li><a href="#"><img src="https://i.ibb.co/ySwtH4B/instagram.png" alt="Instagram" /></a></li>
+        <li><a href="#"><img src="" alt="Twitter" /></a></li>
+        <li><a href=""><img src="." alt="Instagram" /></a></li>
       </ul>
     </section>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -463,19 +451,58 @@ function Finale({epocaActual}) {
 function RenderizadorAplicacion() {
   const [epocaActual, setEpocaActual] = useState(epocasData[0]);
 
+  // OBSERVADOR DE ENTRADA Y SALIDA (Se ejecuta cuando React renderiza las secciones)
+  React.useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15 // Se activa cuando el 15% de la sección es visible
+    };
+
+    const callback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Entra en pantalla: Activa las decoraciones e imágenes
+          entry.target.classList.add("seccion-visible");
+          entry.target.classList.add("europa_transicion");
+        } else {
+          // Sale de pantalla: Esconde las imágenes a los lados
+          entry.target.classList.remove("seccion-visible");
+          entry.target.classList.remove("europa_transicion");
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+
+    // Observa todas las secciones verticales
+    const secciones = document.querySelectorAll('.seccion-vertical');
+    secciones.forEach((seccion) => observer.observe(seccion));
+
+    // Observa elementos individuales de transición si existen
+    const elementosTransicion = document.querySelectorAll('#transicion_element');
+    elementosTransicion.forEach((el) => observer.observe(el));
+
+    // Limpieza al desmontar o cambiar componente
+    return () => observer.disconnect();
+  }, [epocaActual]);
+
   return (
-    <div className="cronovisor-app" style={{ position: 'relative' }}>
-      
-      {/* El reloj flotante vive aquí afuera para estar visible en toda la página */}
+    <div 
+      className={`cronovisor-app epoca-${epocaActual.id}`} 
+      style={{ position: 'relative' }}
+    >
+      {/* Reloj flotante con sincronización de la época activa */}
       <RelojFlotante 
         epocas={epocasData} 
+        epocaActual={epocaActual}
         alCambiarEpoca={setEpocaActual} 
       />
 
       {/* Módulo 1: Pantalla Inicial */}
       <PantallaInicial epocaActual={epocaActual} />
 
-      {/* Modulo 1.5: leyenda */}
+      {/* Módulo 1.5: Leyenda */}
       <section id="seccion-leyenda" className="seccion-vertical">
         <Leyenda epocaActual={epocaActual} />
       </section>
@@ -490,40 +517,15 @@ function RenderizadorAplicacion() {
         <Curiosidad epocaActual={epocaActual} />
       </section>
 
-      {/* Modulo 4: finale */}
+      {/* Módulo 4: Finale */}
       <section id="seccion-finale" className="seccion-vertical">
         <Finale epocaActual={epocaActual} />
       </section>
     </div>
   );
 }
-// Renderizado en el HTML
+
+// Renderizado principal en el HTML
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 root.render(<RenderizadorAplicacion />);
-
-// Funciones para realizar animaciones al momento de que un objeto entre en vista
-
-const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-const callback = (entries, observer) => {
-    console.log(observer);
-    entries.forEach((entry, index) => {        
-        if (entry.isIntersecting){
-            console.log('element europa de is visible'); // linea para prueba de funcionamiento, 
-            entry.target.classList.add("europa_transicion") //clase base donde el objeto estara suspendido mientras esta visible
-        }
-        else{
-            entry.target.classList.remove("europa_transicion")
-        }
-    })
-  }
-
-let observer = new IntersectionObserver(callback, options) //observador que juntando los parametros de options (cuadro de observacion) y la funcion callback realiza la operacion asincronica
-const target = document.querySelectorAll('#transicion_element') //serie de elementos que comparten el mismo ID para aplicarles la transicion
-target.forEach(objetive => {
-    observer.observe(objetive);    
-});
