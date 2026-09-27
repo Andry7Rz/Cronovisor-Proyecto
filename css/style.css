@@ -382,6 +382,15 @@ html {
 
 
 
+/* Oculta las fotos de adorno en el mapa y en curiosidades */
+#seccion-mapa::before,
+#seccion-mapa::after,
+#seccion-curiosidades::before,
+#seccion-curiosidades::after {
+  display: none !important;
+}
+
+
 
 
 
