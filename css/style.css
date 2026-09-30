@@ -193,6 +193,94 @@ html {
 
 
 
+/*leyenda*/
+
+
+/* Contenedor principal de la leyenda */
+  .seccion-leyenda-contenedor {
+    width: 100%;
+    max-width: 1100px;
+    margin: 40px auto 0 auto;
+    padding: 30px;
+    background: #3a1901e1;
+    
+    border: 1px solid #2d1200e1;
+    backdrop-filter: blur(12px);
+
+  }
+
+/* Encabezado */
+.leyenda-encabezado {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+
+
+.leyenda-encabezado h2 {
+  font-size: 1.8em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+
+
+/* Cuadrícula responsiva de tarjetas */
+.leyenda-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+/* Tarjeta individual de cada región */
+.leyenda-card {
+  display: flex;
+  align-items: center;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px 16px;
+  
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.leyenda-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(6, 155, 224, 0.5);
+  background: rgba(30, 41, 59, 0.9);
+}
+
+/* Muestra del color que coincide con el mapa */
+.leyenda-color-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-right: 14px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Texto dentro de la tarjeta */
+.leyenda-info h4 {
+  font-size: 0.95em;
+  color: #f8fafc;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.leyenda-info p {
+  font-size: 0.8em;
+  color: #94a3b8;
+  line-height: 1.2;
+}
+
+
+
+
+
+
+
 
 
 
@@ -206,16 +294,25 @@ html {
    1. PALETAS DE COLOR DINÁMICAS POR ÉPOCA
    ========================================================================== */
 
-/* Época 1: Prehispánica (Tierra, Vegetación, Arcilla) */
+/* Época 1: 
+
+
+
+
+
+*/
 .cronovisor-app.epoca-1 {
-  --bg-seccion: #1a1816;
-  --bg-tarjeta: #24211e;
+  --bg-seccion: #002100e7;
+  --bg-tarjeta: #e2deda;
   --color-titulo: #e67e22;
   --color-texto: #e7e5e4;
   --color-borde: #44403c;
   --color-acento: #2a9d8f;
-}
+  background-image: url("/assets/pantalla inicio_/decoracion fondo/fondo.png");
+  background-size: cover;
+  background-position: center top;
 
+}
 /* Época 2: Colonial (Pergamino Antiguo, Madera, Vino) */
 .cronovisor-app.epoca-2 {
   --bg-seccion: #1a120b;
@@ -338,20 +435,14 @@ html {
 
 /* Época 1: Prehispánica */
 .cronovisor-app.epoca-1 .seccion-vertical::before {
-  top: 20px;
-  left: 20px;
-  width: 220px;
-  height: 220px;
-  background-image: url("../5.png");
+  top: 230px;
+  left: -20px;
+  width: 600px;
+  height: 600px;
+  z-index: 0;
+  background-image: url("/assets/pantalla inicio_/decoracion fondo/Lateral_izquierdo.png");
 }
 
-.cronovisor-app.epoca-1 .seccion-vertical::after {
-  bottom: 20px;
-  right: 20px;
-  width: 220px;
-  height: 220px;
-  background-image: url("../5.png");
-}
 
 /* Época 2: Colonial */
 .cronovisor-app.epoca-2 .seccion-vertical::before {
@@ -775,13 +866,40 @@ html {
   padding: 40px 20px; /* Reduce el padding para ganar espacio */
 }
 
+
+
 /* Forzar el tamaño real del mapa en el contenedor */
 #map-canvas {
-  width: 95% !important;       /* Ocupa casi todo el ancho disponible */
-  max-width: 1400px !important; /* Hazlo tan ancho como quieras (ej. 1400px o 1600px) */
-  height: 80vh !important;     /* Forzar una altura fija basada en la pantalla */
-  margin: 0 auto;
+  width: 95% !important;
+  max-width: 1400px !important;
+  height: 80vh !important;
+  margin: 40px auto !important; 
+  background-color: #bcaf88; 
+  border: 6px solid #5a3714; 
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
 }
+
+/* Opcional: Añade un doble marco interno simulando un mapa cartográfico antiguo */
+#map-canvas::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px dashed rgba(140, 98, 57, 0.4); /* Línea punteada decorativa interna */
+  border-radius: 6px;
+  pointer-events: none; /* Permite hacer clic a través del marco hacia el mapa */
+}
+
+
+
 
 #mapa-venezuela {
   width: 100% !important;
@@ -804,17 +922,17 @@ html {
    2. INTERACCIONES (Hover y Estado Activo)
    ========================================================================== */
 .estado-path:hover {
-  stroke: #ffffff;
-  stroke-width: 2.5px;
-  filter: brightness(1.3) drop-shadow(0 0 8px rgba(6, 155, 224, 0.8));
+  stroke: #f6f5f5;
+  stroke-width: 2.5px;  
+  filter: brightness(1.3) drop-shadow(0 0 8px rgba(0, 0, 0, 0.8));
   z-index: 10;
 }
 
 /* Estado seleccionado al hacer clic */
 .estado-path.activo {
-  stroke: #00e5ff;
+  stroke: #010607;
   stroke-width: 3px;
-  filter: brightness(1.4) drop-shadow(0 0 12px #00e5ff);
+  filter: brightness(1.4) drop-shadow(0 0 12px #030505);
 }
 
 
@@ -930,16 +1048,12 @@ html {
 /* Estilo del Tooltip Flotante del Mapa */
 .mapa-tooltip {
   position: fixed;
-  background: rgba(15, 23, 42, 0.9);
-  color: #00e5ff;
+  background: rgba(232, 233, 235, 0.9);
+  color: #000000;
   padding: 8px 14px;
   font-size: 14px;
   font-weight: 600;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 229, 255, 0.3);
-  pointer-events: none; /* Evita que parpadee al pasar el mouse por encima */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  pointer-events: none;
   z-index: 10000;
   white-space: nowrap;
   text-transform: uppercase;

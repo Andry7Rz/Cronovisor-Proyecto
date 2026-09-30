@@ -32,6 +32,37 @@ const epocasData = [
 ];
 
 
+const leyendaPorEpoca = {
+  '1': [
+    { nombre: 'Región Timoto-Cuica', color: '#8d5b4c', territorio: 'Andes (Táchira, Mérida, Trujillo)' },
+    { nombre: 'Región Caquetía y Jirajara', color: '#d4a359', territorio: 'Occidente (Falcón, Lara, Yaracuy)' },
+    { nombre: 'Región Caribe Central', color: '#e67e22', territorio: 'Centro (Caracas, Miranda, Aragua, Carabobo, Vargas)' },
+    { nombre: 'Región Otomaco y Llanos', color: '#b5838d', territorio: 'Llanos (Cojedes, Guárico, Portuguesa, Barinas, Apure)' },
+    { nombre: 'Región Cumanagoto y Chaima', color: '#2a9d8f', territorio: 'Oriente (Sucre, Anzoátegui, Monagas)' },
+    { nombre: 'Región Guaiquerí', color: '#48cae4', territorio: 'Nueva Esparta' },
+    { nombre: 'Región Warao', color: '#00b4d8', territorio: 'Delta Amacuro' },
+    { nombre: 'Región Pemón y Yanomami', color: '#38b000', territorio: 'Sur (Bolívar, Amazonas, Guayana Esequiba)' },
+    { nombre: 'Región Wayúu y Añú', color: '#e76f51', territorio: 'Zulia' }
+  ],
+  '2': [
+    { nombre: 'Provincia de Caracas', color: '#2a6f97', territorio: 'Caracas, Aragua, Carabobo, Lara, Falcón, Yaracuy, etc.' },
+    { nombre: 'Provincia de Maracaibo', color: '#014f86', territorio: 'Zulia, Táchira, Mérida y Trujillo' },
+    { nombre: 'Provincia de Barinas', color: '#a3b18a', territorio: 'Barinas y Apure' },
+    { nombre: 'Provincia de Cumaná', color: '#d97706', territorio: 'Sucre, Anzoátegui y Monagas' },
+    { nombre: 'Provincia de Margarita', color: '#0284c7', territorio: 'Nueva Esparta' },
+    { nombre: 'Provincia de Guayana', color: '#3f6212', territorio: 'Bolívar, Amazonas, Delta Amacuro y Esequibo' }
+  ],
+  '3': [
+    { nombre: 'Región Capital y Central', color: '#0f4c81', territorio: 'Dfto. Capital, Miranda, Aragua, Carabobo, La Guaira' },
+    { nombre: 'Región Occidental y Zuliana', color: '#1b4965', territorio: 'Zulia, Falcón, Lara, Yaracuy' },
+    { nombre: 'Región Los Andes y Llanos', color: '#2b2d42', territorio: 'Táchira, Mérida, Trujillo, Barinas, Apure, Guárico, etc.' },
+    { nombre: 'Región Oriental e Insular', color: '#134074', territorio: 'Sucre, Anzoátegui, Monagas, Nueva Esparta' },
+    { nombre: 'Región Guayana y Sur', color: '#0b2545', territorio: 'Bolívar, Amazonas, Delta Amacuro' },
+    { nombre: 'Guayana Esequiba', color: '#1e293b', territorio: 'Zona en Reclamación (Línea Punteada)' }
+  ]
+};
+
+
 
 
 
@@ -326,20 +357,35 @@ function RelojFlotante({ epocas = [], epocaActual, alCambiarEpoca }) {
 
 
 //modulo 1.5 leyenda
-function Leyenda({epocaActual}) {
+function Leyenda({ epocaActual }) {
+  // Obtener los datos de la época activa o un arreglo vacío de respaldo
+  const itemsLeyenda = leyendaPorEpoca[epocaActual.id] || [];
+
   return (
-    <div className="seccion-contenido">
-      <p>Leyenda de: <strong>{epocaActual.subtitulo}</strong></p>
-      <h2>Referencias de la region</h2>
-      <div className="seccion-lista">
-        <ul>
-          <li> {/*nombre de la region por epoca introducido por la epoca*/} </li>
-        </ul>
+    <div className="seccion-leyenda-contenedor">
+      <div className="leyenda-encabezado">
+        <span className="leyenda-badge">REFERENCIAS</span>
+        <h2>División Territorial : {epocaActual.nombre}</h2>
+        
+      </div>
+
+      <div className="leyenda-grid">
+        {itemsLeyenda.map((item, index) => (
+          <div className="leyenda-card" key={index}>
+            <span 
+              className="leyenda-color-box" 
+              style={{ backgroundColor: item.color }}
+            ></span>
+            <div className="leyenda-info">
+              <h4>{item.nombre}</h4>
+              <p>{item.territorio}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
-
 
 
 // Módulo 2: Sección del Mapa (Interactúa con la época actual)
