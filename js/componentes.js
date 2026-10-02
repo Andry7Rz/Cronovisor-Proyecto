@@ -11,7 +11,9 @@ const epocasData = [
     titulo: 'CRONOVISOR',
     subtitulo: 'ÉPOCA PREHISPÁNICA',
     descripcion: 'Explora las raíces de nuestra historia y descubre los secretos de las civilizaciones antiguas que habitaron estas tierras.',
-    videoSrc: '../assets/pantalla inicio_/Videos_inicio/prehisapnica.mp4'
+    videoSrc: '../assets/pantalla inicio_/Videos_inicio/prehisapnica.mp4',
+    funfact: '1.	El verdadero origen del nombre "Venezuela": En agosto de 1499, al adentrarse en el Lago de Maracaibo, las expediciones de Alonso de Ojeda y Américo Vespucio observaron las aldeas palafíticas de la etnia Añú construidas sobre pilotes de madera en el agua. Esto les recordó a la ciudad italiana de Venecia, por lo que bautizaron la zona como Veneciuela ("Pequeña Venecia").',
+    funfact2: '2.	Las "Mintoyes" Andinas: Los Timoto-Cuicas no utilizaban pirámides ni templos elevados; en su lugar excavaban complejas estructuras subterráneas recubiertas de piedra donde almacenaban cosechas durante meses y enterraban a sus líderes ceremoniales con artefactos de jadeita y serpentina.'
   },
   {
     id: '2',
@@ -19,7 +21,9 @@ const epocasData = [
     titulo: 'CRONOVISOR',
     subtitulo: 'ÉPOCA COLONIAL',
     descripcion: 'Sumérgete en la historia de Venezuela durante la época colonial y descubre las transformaciones que moldearon nuestro país.',
-    videoSrc: '../assets/pantalla inicio_/Videos_inicio/colonial.mp4'
+    videoSrc: '../assets/pantalla inicio_/Videos_inicio/colonial.mp4',
+    funfact: '1.	El monopolio de la Real Compañía Guipuzcoana: Entre 1728 y 1785, una empresa vasca tuvo el monopolio absoluto del comercio en Venezuela. Controlaba qué se exportaba y a qué precio, lo que desató constantes rebeliones armadas de agricultores criollos y locales, como la revuelta de Juan Francisco de León en 1749.',
+    funfact2: '2.	El principio legal del Uti Possidetis Iuris: Las fronteras internacionales de la Venezuela actual se basan en el mapa de las 6 provincias coloniales existentes en el año 1810. La frase latina significa "como poseías, seguirás poseyendo".'
   },
   {
     id: '3',
@@ -27,7 +31,9 @@ const epocasData = [
     titulo: 'CRONOVISOR',
     subtitulo: 'VENEZUELA ACTUAL',
     descripcion: 'Descubre la historia contemporánea de Venezuela y cómo las decisiones del pasado han moldeado el presente.',
-    videoSrc: '../assets/pantalla inicio_/Videos_inicio/actual.mp4'
+    videoSrc: '../assets/pantalla inicio_/Videos_inicio/actual.mp4',
+    funfact: '1.	Venezuela llegó a tener 20 Estados Unidos: Tras la firma de la Constitución de 1864 resultante de la Guerra Federal, el país adoptó oficialmente el nombre de Estados Unidos de Venezuela, nombre oficial que se mantuvo vigente durante casi un siglo hasta la Constitución de 1953.',
+    funfact2: '2.	El estado con más municipios: El estado Zulia es una de las entidades con mayor peso poblacional e industrial del país, mientras que el estado Falcón cuenta con 25 municipios y el estado Táchira posee 29 municipios, superando en división político-administrativa interna a entidades geográficamente mucho más grandes como Bolívar o Amazonas.'
   }
 ];
 
@@ -469,9 +475,11 @@ function Mapa({ epocaActual }) {
 // Módulo 3: Sección de Curiosidades o Detalles
 function Curiosidad({ epocaActual }) {
   return (
-    <div className="seccion-contenido">
+    <div className="seccion-contenido" id="transicion_element">
       <h2>Curiosidades Históricas</h2>
       <p>Datos clave y eventos memorables de la etapa: <strong>{epocaActual.nombre}</strong></p>
+      <p>{epocaActual.funfact}</p>
+      <p>{epocaActual.funfact2}</p>
     </div>
   );
 }
